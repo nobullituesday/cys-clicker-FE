@@ -17,34 +17,39 @@ interface ChatMessage {
 })
 export class ChatComponent implements OnInit {
   private socket$!: WebSocketSubject<any>;
-  messages: ChatMessage[] = [
-    { username: "HackerMan", message: "I just ddosed the 'deutsche bahn'" },
-    { username: "ScriptKiddie", message: "Anyone got free viruses?" },
-    { username: "Player1", message: "Hello, world!" }
-  ];
+  messages: ChatMessage[] = [];
   messageInput: string = '';
+  isRegistered: boolean = false; 
 
   constructor() {}
 
   ngOnInit() {
-    this.socket$ = new WebSocketSubject('ws://localhost:3000'); 
+    this.socket$ = new WebSocketSubject('ws://localhost:3000');
 
     this.socket$.subscribe(
-      (message: ChatMessage) => this.messages.push(message), 
+      (data: any) => {
+        if (data.event === 'chat-message') {
+          this.messages.push(data.chatMessage);
+        } else if (data.event === 'register') {
+          this.isRegistered = true; 
+        }
+      },
       (err) => console.error(err),
       () => console.warn('WebSocket closed')
     );
+
+    this.socket$.next({ event: 'register' });
   }
 
   sendMessage() {
-    if (this.messageInput.trim()) {
-      const chatMessage: ChatMessage = {
-        username: 'Player1', 
+    if (this.messageInput.trim() && this.isRegistered) {
+      const chatMessage = {
+        event: 'chat-message',
+        username: 'Player1',
         message: this.messageInput
       };
 
       this.socket$.next(chatMessage);
-      this.messages.push(chatMessage); //just for display 
       this.messageInput = '';
     }
   }
