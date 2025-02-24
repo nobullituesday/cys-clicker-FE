@@ -24,7 +24,7 @@ export class ChatComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.socket$ = new WebSocketSubject('ws://localhost:3000');
+    this.socket$ = new WebSocketSubject('ws://192.168.208.1:3000'); //192.168.208.1 port 3000
 
     this.socket$.subscribe(
       (data: any) => {
@@ -32,13 +32,16 @@ export class ChatComponent implements OnInit {
           this.messages.push(data.chatMessage);
         } else if (data.event === 'register') {
           this.isRegistered = true; 
+          console.log('we are now registered')
         }
       },
       (err) => console.error(err),
       () => console.warn('WebSocket closed')
     );
 
+    console.log('attempting connection to server: ')
     this.socket$.next({ event: 'register' });
+
   }
 
   sendMessage() {
