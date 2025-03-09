@@ -1,0 +1,48 @@
+
+.score {
+    position: relative;
+    top: 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.game {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+button {
+    font-size: 32px;
+    padding: 20px 40px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #ff0000, #ff8400);
+    color: white;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+/* Button hover effect */
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 6px 15p
+}
+
+.floating-text {
+    position: absolute;
+    font-size: 35px;
+    color: #00ff08;
+    font-weight: bold;
+    animation: floatUp 2s ease-out forwards;
+    pointer-events: none;
+    -webkit-text-stroke: 1px black; /* width and color (for black border around floating text) */
+  }
+  
+  /* floating animation */
+  @keyframes floatUp {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-50px); opacity: 0; }
+  }
+  

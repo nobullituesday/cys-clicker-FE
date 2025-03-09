@@ -1,0 +1,17 @@
+<h1 class="score">{{ username }}'s Viruses: {{ score }}</h1>
+<br> <!-- For now this is just here as schtuff will get added-->
+<app-shop-preview></app-shop-preview>
+<section class="game">
+    <button (click)="addVirus($event)">Free Bitcoin!<br>⬇️Download Now</button>
+    <div class="floating-text-container">
+        <span *ngFor="let virus of floatingTexts" 
+              class="floating-text" 
+              [style.left.px]="virus.x" 
+              [style.top.px]="virus.y">
+              + {{ virusAmountGained }} Virus
+        </span>
+    </div>
+</section>
+<app-leaderboard></app-leaderboard>
+
+

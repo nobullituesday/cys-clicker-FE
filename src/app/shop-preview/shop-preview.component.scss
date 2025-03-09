@@ -1,0 +1,46 @@
+/* Style the shop container */
+.shop-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 75vw;
+    height: 18vh;
+    margin: auto;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #6dbb73;
+    border-radius: 10px;
+  }
+  
+
+  .shop-title {
+    font-size: 2rem;
+    color: #000000;
+    margin-bottom: 20px;
+  }
+  
+  .categories {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .category-item {
+    padding: 15px 30px;
+    font-size: 1rem;
+    background-color: #007bff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* WTF FUCKING MAGIC */
+  }
+  
+  /* WOW MORE MAGIC */
+  .category-item:hover {
+    background-color: #0056b3;
+}
+  
+
+  
